@@ -6,6 +6,9 @@ import { left, right, down, space } from '../../../code/keybord';
 import { useDispatch, useSelector } from 'react-redux';
 import Reducer from '../../../store/Reducer';
 import './Game.css';
+import render from '../../../code/render';
+import rotate from '../../../code/rotate';
+import lockedTetromino from '../../../code/lockedTetromino';
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -19,36 +22,10 @@ const Game = () => {
     speed,
     map,
   } = useSelector((state) => state);
-  const render = () => {
-    context.clearRect(0, 0, 400, 800);
-    context.fillStyle = choisenTetromino.color;
-    choisenTetromino.matrix.forEach((e, row) => {
-      e.forEach((e, col) => {
-        if (e) {
-          context.fillRect(
-            choisenTetromino.row + row * grid,
-            choisenTetromino.col + col * grid,
-            grid,
-            grid
-          );
-        }
-      });
-    });
-  };
-  const rotate = (matrix) => {
-    console.log('переворот');
-    for (let d = matrix.length, a = 0; a < d; a++) {
-      for (let c = a + 1; c < d; c++) {
-        let e = matrix[a][c];
-        matrix[a][c] = matrix[c][a];
-        matrix[c][a] = e;
-      }
-    }
-    return matrix;
-  };
 
   space.press = () => {
-    let matrix = rotate(choisenTetromino.matrix.slice());
+    let matrix = rotate(JSON.parse(JSON.stringify(choisenTetromino.matrix)));
+
     if (collision(map, { ...choisenTetromino, matrix: matrix }, grid)) {
       dispatch({
         type: 'CHANGE_TETROMINO_MATRIX',
@@ -96,7 +73,7 @@ const Game = () => {
 
   useEffect(() => {
     if (context) {
-      render();
+      render(context, choisenTetromino, grid, map);
     }
   }, [choisenTetromino]);
 
@@ -120,8 +97,10 @@ const Game = () => {
               payload: choisenTetromino.col + grid,
             });
           } else {
-            dispatch({ type: 'PLUS_COUNT' });
+            const newMap = lockedTetromino(choisenTetromino, map, grid);
+            dispatch({ type: 'CHANGE_MAP', payload: newMap });
             dispatch({ type: 'DELETE_TETROMINO' });
+            dispatch({ type: 'PLUS_COUNT' });
           }
         } else {
           dispatch(calculation());

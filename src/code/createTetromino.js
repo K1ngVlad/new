@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 export const createTetromino = (tetrominos, colors, grid) => {
   return (dispatch) => {
-    const ranNum = (num) => Math.ceil(Math.random() * num);
+    const ranNum = (num) => Math.round(Math.random() * num);
     const arr = ['I', 'J', 'L', 'O', 'S', 'Z', 'T'];
     const name = arr[ranNum(6)],
       matrix = tetrominos[name],

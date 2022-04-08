@@ -78,7 +78,7 @@ const defaultState = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ],
-  gameOver: true,
+  gameOver: false,
 };
 
 const Reducer2 = (state = defaultState, action) => {
@@ -117,6 +117,11 @@ const Reducer2 = (state = defaultState, action) => {
       return {
         ...state,
         speed: action.payload,
+      };
+    case 'CHANGE_MAP':
+      return {
+        ...state,
+        map: action.payload,
       };
     case 'GET_TETROMINO':
       return { ...state, choisenTetromino: action.payload };

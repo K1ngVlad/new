@@ -2,11 +2,10 @@ export const collision = (map, choisenTetromino, grid) => {
   const colLength = map.length;
   const rowLength = map[0].length;
   const { row, col, matrix } = choisenTetromino;
-  console.log(row);
   let valid = true;
-  matrix.forEach((e, tetrominoRow) => {
+  matrix.forEach((e, tetrominoCol) => {
     if (!valid) return;
-    e.forEach((e, tetrominoCol) => {
+    e.forEach((e, tetrominoRow) => {
       if (!valid) return;
       if (e) {
         if (
@@ -16,8 +15,8 @@ export const collision = (map, choisenTetromino, grid) => {
         ) {
           valid = false;
         }
-        if (map[row / grid + tetrominoRow]) {
-          if (map[row / grid + tetrominoRow][col / grid + tetrominoCol]) {
+        if (map[col / grid + tetrominoCol]) {
+          if (map[col / grid + tetrominoCol][row / grid + tetrominoRow]) {
             valid = false;
           }
         }
