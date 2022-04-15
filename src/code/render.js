@@ -2,7 +2,7 @@ const render = (context, choisenTetromino, grid, map) => {
   // context.clearRect(0, 0, map[0].length * grid, map.length * grid);
   map.forEach((e, col) => {
     e.forEach((e, row) => {
-      if (!e) {
+      if (e !== 1) {
         context.clearRect(row * grid, col * grid, grid, grid);
       }
     });

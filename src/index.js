@@ -7,9 +7,10 @@ import Reducer2 from './store/Reducer2.js';
 import './index.css';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import rootReducer from './store/rootReducer.js';
 
 const store = createStore(
-  Reducer2,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 ReactDOM.render(
