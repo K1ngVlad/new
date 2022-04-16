@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import './Main.css';
 import Game from './Game/Game';
 import Lose from './Lose/Lose';
+import SideBar from './SideBar/SideBar';
 
 const Main = () => {
   const gameOver = useSelector((state) => state.gameOver);
@@ -123,7 +124,12 @@ const Main = () => {
       dispatch({ type: 'GET_CONTEXT', payload: context });
     }
   }, [context, count, map]);
-  return <div className="Main">{!gameOver ? <Game /> : <Lose />}</div>;
+  return (
+    <div className="Main">
+      {!gameOver ? <Game /> : <Lose />}
+      <SideBar />
+    </div>
+  );
 };
 
 export default Main;

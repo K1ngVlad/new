@@ -10,6 +10,7 @@ const lockedTetromino = (choisenTetromino, map, grid) => {
         }
       });
     });
+    let score = 0;
     newMap.forEach((e, col) => {
       let full = true;
       e.forEach((e) => {
@@ -23,6 +24,7 @@ const lockedTetromino = (choisenTetromino, map, grid) => {
             newMap[i] = newMap[i - 1];
           } else {
             newMap[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            score += 10;
           }
         }
         // newMap[col] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -31,6 +33,7 @@ const lockedTetromino = (choisenTetromino, map, grid) => {
     });
     dispatch({ type: 'CHANGE_MAP', payload: newMap });
     dispatch({ type: 'DELETE_TETROMINO' });
+    dispatch({ type: 'PLUS_SCORE', payload: score });
     // dispatch({ type: 'PLUS_COUNT' });
   };
 };

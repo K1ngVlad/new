@@ -1,0 +1,10 @@
+.SideBar {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 800px;
+  border: 10px solid grey;
+  background-color: rgb(80, 111, 114);
+  margin-left: 64px;
+  margin-top: 96px;
+}
