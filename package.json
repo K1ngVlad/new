@@ -1,12 +1,12 @@
 {
   "name": "new",
   "version": "1.0.0",
-  "homepage": "https://K1ngVlad.github.io/new",
+  "homepage": "https://K1ngVlad.github.io/new/index.html",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
