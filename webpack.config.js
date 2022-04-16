@@ -20,9 +20,10 @@ module.exports = {
   },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
-    publicPath: '/webpack-demo/',
+    // path: path.resolve(__dirname, 'dist/'),
+    path: path.join(__dirname, 'public'),
+    // publicPath: '/dist/',
+    // publicPath: '/webpack-demo/',
     filename: 'bundle.js',
   },
   devServer: {
